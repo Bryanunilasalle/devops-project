@@ -7,7 +7,7 @@ on:
     branches: [ "main" ]
 
 jobs:
-  test:
+  test-and-build:
     runs-on: ubuntu-latest
 
     steps:
@@ -25,3 +25,6 @@ jobs:
       - name: Test application
         run: |
           python -c "import sys; sys.path.insert(0, 'app'); from app import app; print('Application OK')"
+      
+      - name: Build Docker image
+        run: docker build -t devops-app:test .
